@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mỹ Thuật Việt Nam | Di Sản Văn Hóa Nghệ Thuật</title>
+    <style>
+        /* === CORE STYLES === */
+        :root {
+            --primary-color: #FF5722;
+            --secondary-color: #1a1a1a;
+            --text-color: #fff;
+            --lotus-color: rgba(255, 87, 34, 0.1);
+            --transition-speed: 0.4s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #111;
+            color: var(--text-color);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        /* === SPLIT LAYOUT === */
+            .split-layout {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Left gallery section (keep as is) */
+            .gallery-section {
+            width: 50%;
+            background: #000;
+        }
+
+        /* Right content section with effects */
+            .content-section {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: #1a0a0a; /* Nền tối hơn */
+        }
+
+        /* Modified rainbow background with earth tones */
+        .rainbow-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                #bdb484, #cf9872, #A0522D, 
+                #CD853F, #D2691E, #c0ae10);
+            background-size: 400% 400%;
+            animation: rainbowFlow 15s ease infinite;
+            opacity: 1;
+            z-index: 0;
+        }
+
+        @keyframes rainbowFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Ripple effect with earth tones */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(178, 34, 34, 0.2); /* Màu đỏ gạch nhạt */
+            transform: scale(0);
+            animation: rippleAnim 2s linear;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes rippleAnim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Content styles */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 40px;
+            max-width: 80%;
+            background: rgba(26, 10, 10, 0.7); /* Màu nền tối với độ trong suốt */
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 69, 19, 0.3); /* Viền nâu */
+        }
+
+        .page-title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .slogan {
+            font-size: 1.5em;
+            font-style: italic;
+            margin-bottom: 40px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+
+        .explore-btn {
+            padding: 15px 40px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .explore-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(178, 34, 34, 0.5); /* Shadow màu đỏ */
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .gallery-section, .content-section {
+                width: 100%;
+                height: auto;
+                min-height: 50vh;
+            }
+            
+            .content-wrapper {
+                max-width: 90%;
+                padding: 30px 20px;
+            }
+            
+            .page-title {
+                font-size: 2.2em;
+            }
+            
+            .slogan {
+                font-size: 1.2em;
+            }
+        }
+
+        /* === DYNAMIC GRADIENT BACKGROUND === */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, 
+                #1a1a1a 0%, 
+                #2c2c2c 50%, 
+                #1a1a1a 100%);
+            background-size: 200% 200%;
+            animation: subtleFlow 20s ease infinite;
+        }
+
+        @keyframes subtleFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* === LOTUS BACKGROUND === */
+        .lotus-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background: 
+                radial-gradient(circle at 20% 30%, var(--lotus-color) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, var(--lotus-color) 0%, transparent 25%),
+                radial-gradient(circle at 40% 60%, var(--lotus-color) 0%, transparent 25%);
+        }
+
+        .lotus-petal {
+            position: absolute;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 0 Q70 30 90 50 Q70 70 50 100 Q30 70 10 50 Q30 30 50 0" fill="rgba(255,87,34,0.15)"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0;
+            animation: float 20s infinite linear;
+            filter: drop-shadow(0 0 5px rgba(255, 87, 34, 0.3));
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* === LAYOUT === */
+        .split-layout {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery-section {
+            width: 50%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.85);
+            transition: transform var(--transition-speed) ease-out;
+        }
+
+        /* === GALLERY STYLES === */
+        .main-image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-image {
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 1s cubic-bezier(0.33, 1, 0.68, 1);
+            z-index: 1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.7));
+        }
+
+        .main-image.active {
+            opacity: 1;
+        }
+
+        .artist-signature {
+            position: absolute;
+            bottom: 180px;
+            right: 30px;
+            font-style: italic;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.5s ease 0.3s;
+            z-index: 10;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .main-image.active + .artist-signature {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* === THUMBNAILS === */
+        .thumbnails-bar {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            padding: 15px;
+            border-radius: 50px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+            border: 2px solid transparent;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.15);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 25px rgba(255, 87, 34, 0.9);
+            transform: scale(1.1);
+        }
+
+        /* === CONTENT SECTION === */
+        .title {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            color: #fff;
+            position: relative;
+        }
+
+        .title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 3px;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === TIMELINE === */
+        .timeline {
+            width: 80%;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                var(--primary-color) 10%, 
+                var(--primary-color) 90%, 
+                transparent 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.2em;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+            backdrop-filter: blur(5px);
+        }
+
+        /* === BUTTONS === */
+        .explore-btn {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--primary-color), #E64A19);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 87, 34, 0.5);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out 0.8s forwards;
+        }
+
+        .explore-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 87, 34, 0.7);
+        }
+
+        .explore-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #E64A19, var(--primary-color));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .explore-btn:hover::before {
+            opacity: 1;
+        }
+
+        /* === FULLSCREEN BUTTON === */
+        .fullscreen-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(255, 87, 34, 0.8);
+            transform: scale(1.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* === CAPTION === */
+        .image-caption {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.1em;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 12px 20px;
+            border-radius: 8px;
+            z-index: 100;
+            max-width: 60%;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            backdrop-filter: blur(5px);
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .image-caption.show {
+            opacity: 1;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+            .title {
+                font-size: 2.8em;
+            }
+            
+            .slogan {
+                font-size: 1.3em;
+            }
+            
+            .thumbnail {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .split-layout {
+                flex-direction: column;
+            }
+
+            .gallery-section, .content-section {
+                width: 100%;
+                height: auto;
+                min-height: 50vh;
+            }
+
+            .content-section {
+                padding: 30px 20px;
+            }
+
+            .title {
+                font-size: 2.2em;
+                margin-top: 20px;
+            }
+
+            .slogan {
+                font-size: 1.1em;
+                margin-bottom: 25px;
+            }
+
+            .thumbnails-bar {
+                bottom: 15px;
+                padding: 10px;
+                gap: 8px;
+            }
+
+            .thumbnail {
+                width: 40px;
+                height: 40px;
+            }
+
+            .artist-signature {
+                bottom: 120px;
+                right: 15px;
+                font-size: 0.8em;
+            }
+            
+            .explore-btn {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.8em;
+            }
+            
+            .slogan {
+                font-size: 1em;
+                max-width: 90%;
+            }
+            
+            .image-caption {
+                font-size: 0.9em;
+                max-width: 80%;
+            }
+            
+            .timeline {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Nền gradient tinh tế -->
+    <div class="gradient-bg"></div>
+    
+    <!-- Nền hoa sen cách điệu -->
+    <div class="lotus-background" id="lotus-bg"></div>
+    
+    <!-- Layout chính -->
+    <div class="split-layout">
+        <!-- Phần gallery -->
+        <div class="gallery-section" id="gallery-section">
+            <button class="fullscreen-btn" id="fullscreen-btn" title="Xem toàn màn hình">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                </svg>
+            </button>
+            
+            <div class="main-image-container"></div>
+            <div class="thumbnails-bar"></div>
+            <div class="image-caption"></div>
+        </div>
+
+        <!-- Phần nội dung -->
+        <div class="content-section">
+            <div class="rainbow-bg"></div>
+            
+            <div class="content-wrapper">
+                <h1 class="page-title">Mỹ Thuật Việt Nam</h1>
+                <p class="slogan">"Từ đường nét dân gian đến tinh hoa đương đại<br>Hành trình kế thừa và sáng tạo"</p>
+                
+                <button class="explore-btn" onclick="window.location.href='6.html'">Khám phá ngay</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== IMAGE DATA =====
+        const imageData = [
+            { 
+                full: "../images/dg.jpg", 
+                thumb: "../images/dg.jpg", 
+                caption: "Mỹ thuật dân gian",
+                artist: "' Mẹ dạy con học chữ '",
+            },
+            { 
+                full: "../images/R.jpg", 
+                thumb: "../images/R.jpg", 
+                caption: "Mỹ thuật cổ điển",
+                artist: "' Thiếu nữ trong vườn '",
+            },
+            { 
+                full: "../images/mthiendai.jpg", 
+                thumb: "../images/mthiendai.jpg", 
+                caption: "Mỹ thuật hiện đại",
+                artist: "' Chợ gạo Bến Nghé '",
+            },
+            { 
+                full: "../images/mtdantoc.jpg", 
+                thumb: "../images/mtdantoc.jpg", 
+                caption: "Mỹ thuật tôn giáo và dân tộc",
+                artist: "' Thiếu nữ Hà Nhì '",
+            },
+            { 
+                full: "../images/knd.jpg", 
+                thumb: "../images/knd.jpg", 
+                caption: "Mỹ thuật kết hợp hiện đại và truyền thống",
+                artist: "' Kết nạp Đảng ở chiến hào Điện Biên '",
+            },
+            { 
+                full: "../images/dieukhac.jpg", 
+                thumb: "../images/dieukhac.jpg", 
+                caption: "Mỹ thuật điêu khắc",
+                artist: "' Chạm rồng '",
+            }
+        ];
+
+        // ===== DOM ELEMENTS =====
+        const mainImageContainer = document.querySelector('.main-image-container');
+        const thumbnailsBar = document.querySelector('.thumbnails-bar');
+        const captionElement = document.querySelector('.image-caption');
+        const exploreBtn = document.getElementById('explore-btn');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const gallerySection = document.getElementById('gallery-section');
+        const timelineElement = document.querySelector('.timeline');
+        const lotusBg = document.getElementById('lotus-bg');
+        let currentIndex = 0;
+        let isAnimating = false;
+        let slideInterval;
+
+        // ===== INITIALIZE GALLERY =====
+        function initGallery() {
+            // Tạo các cánh hoa sen
+            createLotusPetals();
+            
+            // Tạo hình ảnh chính và thumbnail
+            imageData.forEach((image, index) => {
+                // Main image
+                const mainImage = document.createElement('img');
+                mainImage.src = image.full;
+                mainImage.alt = image.alt;
+                mainImage.classList.add('main-image');
+                
+                // Artist signature
+                const signature = document.createElement('div');
+                signature.classList.add('artist-signature');
+                signature.textContent = image.artist;
+                
+                if (index === 0) {
+                    mainImage.classList.add('active');
+                    signature.style.opacity = '1';
+                    signature.style.transform = 'translateX(0)';
+                }
+                
+                mainImageContainer.appendChild(mainImage);
+                mainImageContainer.appendChild(signature);
+
+                // Thumbnail
+                const thumbnail = document.createElement('img');
+                thumbnail.src = image.thumb;
+                thumbnail.alt = image.alt;
+                thumbnail.title = image.alt;
+                thumbnail.classList.add('thumbnail');
+                thumbnail.setAttribute('data-index', index);
+                
+                if (index === 0) {
+                    thumbnail.classList.add('active');
+                }
+                
+                thumbnailsBar.appendChild(thumbnail);
+
+                // Preload images
+                if (index > 0) {
+                    const img = new Image();
+                    img.src = image.full;
+                }
+
+                // Click event for thumbnails
+                thumbnail.addEventListener('click', () => {
+                    if (!isAnimating) {
+                        showImage(index);
+                        resetSlideTimer();
+                    }
+                });
+            });
+            
+            // Khởi tạo timeline
+            initTimeline();
+        }
+
+        // ===== CREATE LOTUS PETALS =====
+        function createLotusPetals() {
+            const petalCount = 15;
+            
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('lotus-petal');
+                
+                // Random properties
+                const size = Math.random() * 60 + 40;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 10 + 15;
+                
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size}px`;
+                petal.style.left = `${left}%`;
+                petal.style.bottom = `-${size}px`;
+                petal.style.animationDelay = `${delay}s`;
+                petal.style.animationDuration = `${duration}s`;
+                
+                lotusBg.appendChild(petal);
+            }
+        }
+
+        // ===== INITIALIZE TIMELINE =====
+        function initTimeline() {
+            timelineData.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.classList.add('timeline-item');
+                
+                timelineItem.innerHTML = `
+                    <div class="timeline-year">${item.year}</div>
+                    <div class="timeline-content">${item.content}</div>
+                `;
+                
+                timelineElement.appendChild(timelineItem);
+                
+                // Kích hoạt animation khi scroll đến
+                setTimeout(() => {
+                    checkTimelineVisibility();
+                }, 100);
+            });
+        }
+
+        // ===== CHECK TIMELINE VISIBILITY =====
+        function checkTimelineVisibility() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            timelineItems.forEach((item, index) => {
+                const rect = item.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight * 0.8;
+                
+                if (isVisible) {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+        }
+
+        // ===== SHOW IMAGE FUNCTION =====
+        function showImage(index) {
+            if (isAnimating || currentIndex === index) return;
+            isAnimating = true;
+
+            const currentThumb = document.querySelector(`.thumbnail[data-index="${currentIndex}"]`);
+            const newThumb = document.querySelector(`.thumbnail[data-index="${index}"]`);
+            const currentMain = document.querySelectorAll('.main-image')[currentIndex];
+            const newMain = document.querySelectorAll('.main-image')[index];
+            const currentSignature = document.querySelectorAll('.artist-signature')[currentIndex];
+            const newSignature = document.querySelectorAll('.artist-signature')[index];
+
+            // Update caption
+            captionElement.textContent = imageData[index].caption;
+            captionElement.classList.remove('show');
+            
+            // Hide current image and signature
+            currentMain.classList.remove('active');
+            currentSignature.style.opacity = '0';
+            currentSignature.style.transform = 'translateX(20px)';
+            
+            // Update thumbnail active state
+            currentThumb.classList.remove('active');
+            newThumb.classList.add('active');
+
+            // Show new image
+            newMain.classList.add('active');
+            newMain.style.zIndex = '2';
+            currentMain.style.zIndex = '1';
+            
+            // Show signature and caption after delay
+            setTimeout(() => {
+                newSignature.style.opacity = '1';
+                newSignature.style.transform = 'translateX(0)';
+                captionElement.classList.add('show');
+                isAnimating = false;
+            }, 500);
+
+            currentIndex = index;
+        }
+
+        // ===== AUTO SLIDE =====
+        function startSlideTimer() {
+            slideInterval = setInterval(() => {
+                const newIndex = (currentIndex + 1) % imageData.length;
+                if (!isAnimating) {
+                    showImage(newIndex);
+                }
+            }, 3500); // Tăng thời gian chuyển slide lên 6 giây
+        }
+        function stopSlideShow() {
+        clearInterval(slideInterval);
+}
+
+        function resetSlideTimer() {
+            clearInterval(slideInterval);
+            startSlideTimer();
+        }
+
+        // ===== FULLSCREEN FUNCTION =====
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                gallerySection.requestFullscreen().catch(err => {
+                    alert(`Lỗi khi mở toàn màn hình: ${err.message}`);
+                });
+                fullscreenBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+                </svg>`;
+                fullscreenBtn.setAttribute('title', 'Thoát toàn màn hình');
+            } else {
+                document.exitFullscreen();
+                fullscreenBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                </svg>`;
+                fullscreenBtn.setAttribute('title', 'Xem toàn màn hình');
+            }
+        }
+
+        // ===== EXPLORE BUTTON =====
+        function setupExploreButton() {
+            exploreBtn.addEventListener('click', function() {
+                // Smooth scroll to timeline
+                document.querySelector('.timeline').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // ===== INITIALIZE EVERYTHING =====
+        document.addEventListener('DOMContentLoaded', function() {
+            initGallery();
+            startSlideTimer();
+            setupExploreButton();
+            
+            
+            fullscreenBtn.addEventListener('click', toggleFullscreen);
+            
+            // Show first image
+            showImage(0);
+            
+            // Thêm sự kiện scroll cho timeline
+            window.addEventListener('scroll', checkTimelineVisibility);
+            startSlideShow();
+
+            mainImageContainer.addEventListener('mouseenter', stopSlideShow);
+            mainImageContainer.addEventListener('mouseleave', startSlideShow);
+
+            window.addEventListener('scroll', checkTimelineVisibility);
+        });
+
+        // ===== MOUSE EFFECTS =====
+        const gradientBg = document.querySelector('.gradient-bg');
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            // Hiệu ứng di chuyển background nhẹ theo chuột
+            const bgPosX = (mouseX / windowWidth - 0.5) * 10;
+            const bgPosY = (mouseY / windowHeight - 0.5) * 10;
+
+            gradientBg.style.backgroundPosition = `${50 + bgPosX}% ${50 + bgPosY}%`;
+        });
+
+        // Create ripples on mouse move with earth tones
+        document.addEventListener('mousemove', function(e) {
+            const contentSection = document.querySelector('.content-section');
+            const ripple = document.createElement('div');
+            ripple.classList.add('ripple');
+            
+            // Random earth tone color
+            const earthTones = ['#B22222', '#8B4513', '#A0522D', '#CD853F', '#D2691E'];
+            const randomColor = earthTones[Math.floor(Math.random() * earthTones.length)];
+            ripple.style.background = `${randomColor}30`; /* Thêm độ trong suốt */
+            
+            // Position ripple at mouse position
+            const rect = contentSection.getBoundingClientRect();
+            ripple.style.left = `${e.clientX - rect.left}px`;
+            ripple.style.top = `${e.clientY - rect.top}px`;
+            
+            contentSection.appendChild(ripple);
+            
+            // Remove ripple after animation
+            setTimeout(() => {
+                ripple.remove();
+            }, 2000);
+        });
+
+        
+    </script>
+</body>
+</html>

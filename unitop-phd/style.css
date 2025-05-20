@@ -1,0 +1,274 @@
+body {
+  margin: 0;
+  font-family: 'Noto Serif', serif;
+  color: #000;
+}
+
+/* Header có logo */
+.top-header {
+  background-color: #c19a6b; /* màu nâu vàng đậm */
+  padding: 25px 0 10px;
+  text-align: center;
+  border-bottom: 1px solid #000;
+}
+
+.logo {
+  font-size: 2.6rem;
+  font-weight: bold;
+  color: #000;
+  letter-spacing: 3px;
+}
+
+/* Thanh điều hướng */
+.main-nav {
+  background-color: #f9f7ee;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  justify-content: center;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.main-nav li {
+  position: relative;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 8px 12px;
+  display: block;
+}
+
+.main-nav a:hover {
+  color: #aa7b28; /* tông đất vàng nâu */
+}
+
+/* Dropdown menu */
+.main-nav li .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  min-width: 200px;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-nav li:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li a {
+  padding: 10px;
+  color: #000;
+  font-weight: normal;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f5f5f5;
+}
+
+/* Search bar */
+.search-bar {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+}
+
+.search-bar form {
+  display: flex;
+}
+
+.search-bar input[type="text"] {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 1rem;
+}
+
+.search-bar button {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  font-size: 1rem;
+}
+
+/* Phần Slider tranh mỹ thuật */
+.art-slider-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  position: relative;
+}
+
+.art-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.swiper {
+  width: 100%;
+  overflow: visible; /* Cho phép hiển thị nút điều hướng */
+}
+
+.swiper-wrapper {
+  display: flex;
+}
+
+.swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.slide-image img {
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.slide-text {
+  max-width: 500px;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background-color: #fdfbf7;
+}
+
+.slide-text h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #8b4513;
+}
+
+.slide-text p {
+  margin: 0;
+  color: #333;
+}
+
+/* Nút điều hướng Swiper */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #8b4513;
+  transition: color 0.3s ease;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  z-index: 20; /* THÊM DÒNG NÀY để nút nằm trên mọi thứ */
+  background-color: rgba(255, 255, 255, 0.7); /* nền mờ dễ nhìn */
+  border-radius: 50%;
+}
+
+
+.swiper-button-prev {
+  left: -50px;
+}
+
+.swiper-button-next {
+  right: -50px;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #aa7b28;
+}
+
+/* Bố cục text + hình ảnh */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.text {
+  flex: 1;
+  padding-right: 30px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+/* Tiêu đề cho phần tác phẩm nổi bật */
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  margin: 30px 0 10px;
+  padding: 10px 0;
+  color: #3b2f2f;
+  background-color: #f7f4ef;
+  border-bottom: 2px solid #d1bfa7;
+  font-family: 'Georgia', serif;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.section-title.appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.decor-line {
+  width: 80px;
+  height: 3px;
+  background: #d1bfa7;
+  margin: 0 auto 20px;
+  border-radius: 3px;
+}
+
+.highlighted-section {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+/* Đảm bảo bố cục slide không bị tuột */
+.swiper-slide {
+  min-height: 400px; /* hoặc chiều cao hợp lý */
+  flex-wrap: nowrap; /* NGĂN XUỐNG DÒNG */
+}
+
+/* Fix cho container Swiper */
+.art-slider {
+  overflow: visible; /* Cho phép hiển thị nút điều hướng */
+  position: relative;
+}
+
+.slide-image img {
+  max-width: 100%;
+  height: auto;
+}

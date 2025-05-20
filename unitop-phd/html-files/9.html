@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mỹ Thuật Việt Nam - Di sản Nghệ thuật Dân tộc</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4A3B31;
+            --secondary-color: #E3CAA5;
+            --accent-color: #B87333;
+            --light-bg: #F8F8FF;
+            --dark-text: #36454F;
+            --border-color: #A9A9A9;
+        }
+
+        /* General Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Noto Serif', serif;
+            color: var(--dark-text);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header */
+        .top-header {
+            background-color: var(--secondary-color);
+            padding: 25px 0 15px;
+            text-align: center;
+            border-bottom: 1px solid var(--dark-text);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            letter-spacing: 3px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+        }
+        /*
+        .logo::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        */
+        /* Navigation */
+        #main-navigation {
+            background-color: var(--light-bg);
+            border-top: 1px solid var(--dark-text);
+            border-bottom: 1px solid var(--dark-text);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .main-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #main-navigation li {
+            position: relative;
+        }
+
+        #main-navigation a {
+            display: block;
+            padding: 8px 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        #main-navigation a:hover {
+            color: var(--accent-color);
+        }
+
+        #main-navigation a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        #main-navigation a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            min-width: 220px;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 5px 5px;
+            overflow: hidden;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            padding: 12px 15px;
+            font-weight: 500;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f8f4e8;
+            padding-left: 20px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .search-bar form {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+            width: 200px;
+            transition: all 0.3s ease;
+            font-family: 'Noto Serif', serif;
+        }
+
+        .search-bar input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(170,123,40,0.2);
+        }
+
+        .search-bar button {
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            border-left: none;
+            background-color: #f0e6d2;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin: 3rem 0;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--secondary);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+        }
+        
+        /* Giới thiệu */
+        .intro {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .intro-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .intro-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .intro-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .intro-text {
+            flex: 1;
+        }
+        
+        /* Bảo tàng */
+        .museums {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .museum-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .museum-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .museum-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .museum-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .museum-card:hover .museum-img img {
+            transform: scale(1.1);
+        }
+        
+        .museum-info {
+            padding: 1.5rem;
+        }
+        
+        .museum-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-text);
+            color: #fff;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom:10px;
+        }
+
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #fff;
+            background-color: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Thông tin thực tế */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .info-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Art Slider Section */
+        #art-slider-section {
+            background-color: #faf8f3;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .art-slider {
+            position: relative;
+            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .swiper {
+            width: 100%;
+            overflow: visible;
+        }
+
+        .swiper-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .swiper-slide {
+            flex-shrink: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            box-sizing: border-box;
+            min-height: 450px;
+            opacity: 0 !important;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .swiper-slide-active {
+            opacity: 1 !important;
+        }
+
+        .slide-image {
+            flex: 1;
+            max-width: 500px;
+            max-height: 600px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateX(-50px) rotateY(15deg);
+            opacity: 0;
+            filter: brightness(0.9);
+        }
+
+        .slide-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            max-height: 100%;
+        }
+
+        .swiper-slide-active .slide-image {
+            transform: translateX(0) rotateY(0);
+            opacity: 1;
+            filter: brightness(1);
+            transition-delay: 0.3s;
+        }
+
+        .slide-text {
+            flex: 1;
+            max-width: 500px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            background-color: #fff;
+            position: relative;
+            overflow: hidden;
+            transform: translateX(50px) rotateY(-15deg);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            text-align: justify;
+        }
+        
+        .slide-text h3 {
+            text-align: center;
+        }
+
+        .swiper-slide-active .slide-text {
+            transform: translateX(0) rotateY(0);
+            opacity: 1;
+            transition-delay: 0.6s;
+        }
+
+        .swiper-slide .slide-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(193,154,107,0.3) 0%, rgba(255,255,255,0) 50%);
+            z-index: 2;
+            transition: all 1s ease;
+            transform: translateX(-100%);
+        }
+
+        .swiper-slide-active .slide-image::before {
+            transform: translateX(100%);
+            transition-delay: 0.4s;
+        }
+
+        /* Swiper Navigation Buttons */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--primary);
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            top: 50%;
+            transform: translateY(-50%) scale(0.9);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(2px);
+            opacity: 0.7;
+        }
+
+        .swiper-button-prev {
+            left: 20px;
+        }
+
+        .swiper-button-next {
+            right: 20px;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            color: #fff;
+            background-color: var(--accent-color);
+            transform: translateY(-50%) scale(1);
+            opacity: 1;
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        /* Swiper Pagination */
+        .swiper-pagination {
+            position: absolute;
+            bottom: 20px !important;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255,255,255,0.5);
+            opacity: 1;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: var(--accent-color);
+            transform: scale(1.2);
+        }
+        
+        /* Highlighted Sections */
+        .highlighted-section {
+            padding: 60px 0;
+            background-color: #fff;
+        }
+
+        .highlighted-section:nth-child(even) {
+            background-color: #faf8f3;
+        }
+        
+        /* Artists Grid */
+        .artists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .artist-card {
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .artist-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .artist-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .artist-info {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(16, 15, 15, 0.8);
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: bottom 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .artist-card:hover .artist-info {
+            bottom: 0;
+        }
+
+        .artist-card:hover .artist-image img {
+            transform: scale(1.1);
+        }
+
+        .artist-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .artist-info p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+
+        .artist-name {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--dark-text);
+        }
+        
+        /* News & Events */
+        .news-events {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .news-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-date {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        
+        .news-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .news-excerpt {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .read-more:hover {
+            color: var(--primary);
+        }
+        
+        .view-all {
+            display: block;
+            width: 200px;
+            margin: 40px auto 0;
+            padding: 12px;
+            text-align: center;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            
+        }
+        
+        .view-all:hover {
+            background: var(--primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .swiper-slide {
+                flex-direction: column;
+                gap: 30px;
+                padding: 30px;
+                min-height: auto;
+            }
+
+            .slide-image, .slide-text {
+                max-width: 100%;
+            }
+
+            .logo {
+                font-size: 2.2rem;
+            }
+
+            #main-navigation a {
+                font-size: 0.95rem;
+                padding: 8px 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .intro {
+                flex-direction: column;
+            }
+            
+            .nav-menu {
+                gap: 15px;
+            }
+
+            .search-bar input[type="text"] {
+                width: 150px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .swiper-slide {
+                padding: 20px;
+            }
+
+            .slide-text {
+                padding: 20px;
+            }
+
+            .slide-text h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main-nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .search-bar {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .search-bar form {
+                width: 100%;
+            }
+
+            .search-bar input[type="text"] {
+                width: 100%;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>   
+    <header class="top-header">
+        <a href="#" class="logo">MỸ THUẬT VIỆT NAM</a>
+    </header>
+
+    <nav id="main-navigation">
+        <div class="main-nav-container">
+            <ul class="nav-menu">
+                <li><a href="6.html">Trang chủ</a></li>
+                <li><a href="18.html">Nghệ sĩ</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Giới thiệu <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="9.html">Bảo tàng</a></li>
+                        <li><a href="12.html">Lịch sử mỹ thuật Việt Nam</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Thể loại <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="65.html">Mỹ thuật dân gian</a></li>
+                        <li><a href="67.html">Mỹ thuật cổ điển</a></li>
+                        <li><a href="66.html">Mỹ thuật hiện đại</a></li>
+                        <li><a href="kh.html">Mỹ thuật tôn giáo và dân tộc</a></li>
+                        <li><a href="kh2.html">Kết hợp truyền thống & hiện đại</a></li>
+                        <li><a href="kh3.html">Sắp đặt và đa phương tiện</a></li>
+                        <li><a href="dk.html">Điêu khắc</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="16.html">Sự kiện và giáo dục</a></li>
+            </ul>
+
+            <div class="search-bar">
+                <form action="#" method="get">
+                    <input type="text" name="search" placeholder="Tìm kiếm..." />
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Giới thiệu -->
+        <section id="gioi-thieu">
+            <h1>Giới thiệu</h1>
+            <div class="intro">
+    
+                </div>
+                <div class="intro-text">
+                    <p>Việt Nam có hệ thống bảo tàng phong phú và đa dạng, phản ánh lịch sử, văn hóa và nghệ thuật của 54 dân tộc anh em. Các bảo tàng không chỉ là nơi lưu giữ hiện vật quý giá mà còn là trung tâm nghiên cứu, giáo dục về di sản văn hóa dân tộc.</p>
+                    <p>Hệ thống bảo tàng Việt Nam bao gồm các bảo tàng quốc gia, bảo tàng chuyên ngành, bảo tàng tỉnh/thành phố và các bảo tàng tư nhân, với tổng số hơn 160 bảo tàng trên cả nước.</p>
+                    <p>Mỗi bảo tàng mang một nét độc đáo riêng, từ kiến trúc đến nội dung trưng bày, tạo nên bức tranh đa sắc về văn hóa - lịch sử Việt Nam.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Các bảo tàng nổi bật -->
+        <section id="bao-tang">
+            <h1>Bảo Tàng Nổi Bật</h1>
+            
+            <h2>Miền Bắc</h2>
+            <div class="museums">
+                <div class="museum-card">
+                    <div class="museum-img">
+                        <img src="../images/11.jpg" alt="Bảo tàng Lịch sử Quốc gia">
+                    </div>
+                    <div class="museum-info">
+                        <h3>Bảo tàng Lịch sử Quốc gia</h3>
+                        <p>Địa chỉ: 1 Tràng Tiền, Hoàn Kiếm, Hà Nội</p>
+                        <p>Nơi lưu giữ hơn 200.000 hiện vật từ thời tiền sử đến nay</p>
+                    </div>
+                </div>
+                
+                <div class="museum-card">
+                    <div class="museum-img">
+                        <img src="../images/22.jpg" alt="Bảo tàng Mỹ thuật Việt Nam">
+                    </div>
+                    <div class="museum-info">
+                        <h3>Bảo tàng Mỹ thuật Việt Nam</h3>
+                        <p>Địa chỉ: 66 Nguyễn Thái Học, Ba Đình, Hà Nội</p>
+                        <p>Bộ sưu tập nghệ thuật đồ sộ từ cổ đại đến hiện đại</p>
+                    </div>
+                </div>
+                
+                <div class="museum-card">
+                    <div class="museum-img">
+                        <img src="../images/33.jpg" alt="Bảo tàng Dân tộc học">
+                    </div>
+                    <div class="museum-info">
+                        <h3>Bảo tàng Dân tộc học</h3>
+                        <p>Địa chỉ: Đường Nguyễn Văn Huyên, Cầu Giấy, Hà Nội</p>
+                        <p>Giới thiệu văn hóa 54 dân tộc Việt Nam</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Miền Trung</h2>
+            <div class="museums">
+                <div class="museum-card">
+                    <div class="museum-img">
+                        <img src="../images/44.jpg" alt="Bảo tàng Cổ vật Cung đình Huế">
+                    </div>
+                    <div class="museum-info">
+                        <h3>Bảo tàng Cổ vật Cung đình Huế</h3>
+                        <p>Địa chỉ: 3 Lê Trực, Thành phố Huế</p>
+                        <p>Bộ sưu tập đồ sộ về triều Nguyễn và văn hóa cung đình</p>
+                    </div>
+                </div>
+                
+                <div class="museum-card">
+                    <div class="museum-img">
+                        <img src="../images/66.jpg" alt="Bảo tàng Điêu khắc Chăm">
+                    </div>
+                    <div class="museum-info">
+                        <h3>Bảo tàng Điêu khắc Chăm</h3>
+                        <p>Địa chỉ: 2 Tháng 9, Đà Nẵng</p>
+                        <p>Trưng bày hiện vật văn hóa Chăm Pa từ thế kỷ 7-15</p>
+                    </div>
+                </div>
+                
+                <div class="museum-card">
+                    <div class="museum-img">
+                        <img src="../images/77.jpg" alt="Bảo tàng Quảng Trị">
+                    </div>
+                    <div class="museum-info">
+                        <h3>Bảo tàng Quảng Trị</h3>
+                        <p>Địa chỉ: 01 Lê Duẩn, Đông Hà, Quảng Trị</p>
+                        <p>Tái hiện lịch sử đấu tranh cách mạng tại chiến trường ác liệt nhất</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Miền Nam</h2>
+            <div class="museums">
+                <div class="museum-card">
+                    <div class="museum-img">
+                        <img src="../images/100.jpg" alt="Bảo tàng Hồ Chí Minh">
+                    </div>
+                    <div class="museum-info">
+                        <h3>Bảo tàng Hồ Chí Minh</h3>
+                        <p>Địa chỉ: Số 1 Nguyễn Tất Thành, Quận 4, TP.HCM</p>
+                        <p>Nơi lưu giữ nhiều tư liệu quý về Chủ tịch Hồ Chí Minh</p>
+                    </div>
+                </div>
+                
+                <div class="museum-card">
+                    <div class="museum-img">
+                        <img src="../images/101.jpg" alt="Bảo tàng Chứng tích Chiến tranh">
+                    </div>
+                    <div class="museum-info">
+                        <h3>Bảo tàng Chứng tích Chiến tranh</h3>
+                        <p>Địa chỉ: 28 Võ Văn Tần, Quận 3, TP.HCM</p>
+                        <p>Tái hiện chân thực hậu quả chiến tranh tại Việt Nam</p>
+                    </div>
+                </div>
+                
+                <div class="museum-card">
+                    <div class="museum-img">
+                        <img src="../images/102.jpg" alt="Bảo tàng Áo dài">
+                    </div>
+                    <div class="museum-info">
+                        <h3>Bảo tàng Áo dài</h3>
+                        <p>Địa chỉ: Long Thuận, Thủ Đức, TP.HCM</p>
+                        <p>Nơi lưu giữ lịch sử phát triển của áo dài Việt Nam</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Thông tin thực tế -->
+        <section id="thong-tin">
+            <h1>Thông tin chung</h1>
+            
+            <div class="info-cards">
+                <div class="info-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Giờ mở cửa</h3>
+                    <p>Thường từ 8:00 - 17:00</p>
+                    <p>(Đóng cửa thứ Hai hoặc đầu tuần)</p>
+                </div>
+                
+                <div class="info-card">
+                    <i class="fas fa-ticket-alt"></i>
+                    <h3>Giá vé</h3>
+                    <p>Người lớn: 20.000đ - 50.000đ</p>
+                    <p>Học sinh: 10.000đ - 20.000đ</p>
+                    <p>Miễn phí cho trẻ em dưới 6 tuổi</p>
+                </div>
+                
+                <div class="info-card">
+                    <i class="fas fa-info-circle"></i>
+                    <h3>Lưu ý</h3>
+                    <p>Nên đặt tour hướng dẫn</p>
+                    <p>Tuân thủ quy định bảo tàng</p>
+                    <p>Không chạm vào hiện vật</p>
+                </div>
+                
+                <div class="info-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Sự kiện</h3>
+                    <p>Thường xuyên có triển lãm chuyên đề</p>
+                    <p>Hoạt động giáo dục di sản</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Về chúng tôi</h3>
+                <p>Tên nhóm: Ymir Lord</p>
+                <p>Thành viên: <br>
+                    1.Đỗ Thị Tình <br>
+                    2.Lê Thị Ngọc Vy <br>
+                    3.Hà Thúc Tấn <br>
+                    4.Trương Đức Long <br>
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="6.html">Trang chủ</a></li>
+                    <li><a href="18.html">Nghệ sĩ</a></li>
+                    <li><a href="9.html">Bảo tàng</a></li>
+                    <li><a href="16.html">Sự kiện và giáo dục</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Thông tin liên hệ</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Trường Đại Học CNTT và TT Việt-Hàn</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('.swiper', {
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                loop: true,
+                autoplay: {
+                    delay: 8000,
+                    disableOnInteraction: false,
+                },
+                speed: 1200,
+                grabCursor: true,
+                effect: 'creative',
+                creativeEffect: {
+                    prev: {
+                        shadow: true,
+                        translate: ['-100%', 0, -1],
+                        opacity: 0,
+                    },
+                    next: {
+                        translate: ['100%', 0, 0],
+                        opacity: 0,
+                    },
+                },
+            });
+
+            // Simple appear animation on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+
+            const sectionTitles = document.querySelectorAll('.section-title');
+            sectionTitles.forEach((title) => {
+                observer.observe(title);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Danh Tác Mỹ Thuật Việt Nam | Phân loại theo thể loại</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4A3B31;
+            --secondary-color: #E3CAA5;
+            --accent-color: #B87333;
+            --light-bg: #F8F8FF;
+            --dark-text: #36454F;
+            --border-color: #A9A9A9;
+            --primary: #d35400;
+            --secondary: #2c3e50;
+            --accent: #e67e22;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+
+        /* General Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Serif', serif;
+        }
+
+        body {
+            margin: 0;
+            color: var(--dark-text);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header */
+        .top-header {
+            background-color: var(--secondary-color);
+            padding: 25px 0 15px;
+            text-align: center;
+            border-bottom: 1px solid var(--dark-text);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            letter-spacing: 3px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Navigation */
+        #main-navigation {
+            background-color: var(--light-bg);
+            border-top: 1px solid var(--dark-text);
+            border-bottom: 1px solid var(--dark-text);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .main-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #main-navigation li {
+            position: relative;
+        }
+
+        #main-navigation a {
+            display: block;
+            padding: 8px 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        #main-navigation a:hover {
+            color: var(--accent-color);
+        }
+
+        #main-navigation a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        #main-navigation a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        /* Footer */
+        footer {
+            background-color: var(--dark-text);
+            color: #fff;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom:10px;
+        }
+
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #fff;
+            background-color: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            min-width: 220px;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 5px 5px;
+            overflow: hidden;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            padding: 12px 15px;
+            font-weight: 500;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f8f4e8;
+            padding-left: 20px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .search-bar form {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+            width: 200px;
+            transition: all 0.3s ease;
+            font-family: 'Noto Serif', serif;
+        }
+
+        .search-bar input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(170,123,40,0.2);
+        }
+
+        .search-bar button {
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            border-left: none;
+            background-color: #f0e6d2;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Main content styles */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            color: var(--secondary);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+        
+        .art-category {
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .category-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .category-description {
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .artists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .artist-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .artist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .artist-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .artist-info {
+            padding: 1.5rem;
+        }
+        
+        .artist-name {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .artist-years {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .artist-desc {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .artist-style {
+            display: inline-block;
+            background: var(--light);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .read-more {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .read-more:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        
+        footer {
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .artists-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Navigation responsive */
+            .main-nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .search-bar {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .search-bar form {
+                width: 100%;
+            }
+
+            .search-bar input[type="text"] {
+                width: 100%;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .category-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+     <header class="top-header">
+        <a href="#" class="logo">MỸ THUẬT VIỆT NAM</a>
+    </header>
+
+    <nav id="main-navigation">
+        <div class="main-nav-container">
+            <ul class="nav-menu">
+                <li><a href="6.html">Trang chủ</a></li>
+                <li><a href="18.html">Nghệ sĩ</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Giới thiệu <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="9.html">Bảo tàng</a></li>
+                        <li><a href="12.html">Lịch sử mỹ thuật Việt Nam</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Thể loại <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="65.html">Mỹ thuật dân gian</a></li>
+                        <li><a href="67.html">Mỹ thuật cổ điển</a></li>
+                        <li><a href="66.html">Mỹ thuật hiện đại</a></li>
+                        <li><a href="kh.html">Mỹ thuật tôn giáo và dân tộc</a></li>
+                        <li><a href="kh2.html">Kết hợp truyền thống & hiện đại</a></li>
+                        <li><a href="kh3.html">Sắp đặt và đa phương tiện</a></li>
+                        <li><a href="dk.html">Điêu khắc</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="16.html">Sự kiện và giáo dục</a></li>
+            </ul>
+
+            <div class="search-bar">
+                <form action="#" method="get">
+                    <input type="text" name="search" placeholder="Tìm kiếm..." />
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    
+        
+        <!-- Mỹ thuật dân gian -->
+        <section id="dangian" class="art-category">
+            <h2 class="category-title">Mỹ Thuật Dân Gian</h2>
+            <p class="category-description">Nghệ thuật dân gian Việt Nam phản ánh đời sống tinh thần phong phú của người dân qua các thế hệ, với những nét đặc trưng vùng miền rõ rệt.</p>
+            
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <img src="../images/che.jpg" alt="Nguyễn Đăng Chế" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Nguyễn Đăng Chế</h3>
+                        <p class="artist-years">(1918 - 1989)</p>
+                        <p class="artist-desc">Nghệ nhân tranh dân gian Đông Hồ nổi tiếng, người có công bảo tồn và phát triển dòng tranh này.</p>
+                        <div>
+                            <span class="artist-style">Tranh Đông Hồ</span>
+                            <span class="artist-style">Khắc gỗ</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/nghien.jpg" alt="Lê Đình Nghiên" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Lê Đình Nghiên</h3>
+                        <p class="artist-years">(1920 - 2002)</p>
+                        <p class="artist-desc">Nghệ nhân tranh Hàng Trống, người gìn giữ nghệ thuật tranh dân gian truyền thống Hà Nội.</p>
+                        <div>
+                            <span class="artist-style">Tranh Hàng Trống</span>
+                            <span class="artist-style">Màu nước</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/hau.jpg" alt="Nguyễn Thị Hậu" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Nguyễn Thị Hậu</h3>
+                        <p class="artist-years">(1935 - )</p>
+                        <p class="artist-desc">Nghệ nhân gốm Bát Tràng, người có nhiều đóng góp trong việc phát triển nghề gốm truyền thống.</p>
+                        <div>
+                            <span class="artist-style">Gốm sứ</span>
+                            <span class="artist-style">Điêu khắc</span>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mỹ thuật cổ điển -->
+        <section id="codien" class="art-category">
+            <h2 class="category-title">Mỹ Thuật Cổ Điển</h2>
+            <p class="category-description">Nghệ thuật cổ điển Việt Nam chịu ảnh hưởng từ các triều đại phong kiến, với những tác phẩm mang đậm dấu ấn lịch sử và văn hóa dân tộc.</p>
+            
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <img src="../images/tran.jpg" alt="Trần Quang Trân" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Trần Quang Trân</h3>
+                        <p class="artist-years">(1895 - 1973)</p>
+                        <p class="artist-desc">Họa sĩ tiêu biểu của dòng tranh cổ điển Việt Nam, chuyên về đề tài cung đình và phong cảnh.</p>
+                        <div>
+                            <span class="artist-style">Tranh lụa</span>
+                            <span class="artist-style">Mực nho</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/chanh.jpg" alt="Nguyễn Phan Chánh" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Nguyễn Phan Chánh</h3>
+                        <p class="artist-years">(1892 - 1984)</p>
+                        <p class="artist-desc">Bậc thầy tranh lụa Việt Nam, người kết hợp tinh hoa hội họa cổ điển Á Đông với chất liệu hiện đại.</p>
+                        <div>
+                            <span class="artist-style">Tranh lụa</span>
+                            <span class="artist-style">Hiện thực</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/mien.jpg" alt="Lê Văn Miến" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Lê Văn Miến</h3>
+                        <p class="artist-years">(1873 - 1943)</p>
+                        <p class="artist-desc">Một trong những họa sĩ đầu tiên của mỹ thuật hiện đại Việt Nam, với phong cách cổ điển phương Đông.</p>
+                        <div>
+                            <span class="artist-style">Sơn dầu</span>
+                            <span class="artist-style">Chân dung</span>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mỹ thuật hiện đại -->
+        <section id="hiendai" class="art-category">
+            <h2 class="category-title">Mỹ Thuật Hiện Đại</h2>
+            <p class="category-description">Nghệ thuật hiện đại Việt Nam phát triển mạnh từ đầu thế kỷ 20, kết hợp tinh hoa Đông-Tây và mang đậm dấu ấn cá nhân của nghệ sĩ.</p>
+            
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <img src="../images/phai.jpg" alt="Bùi Xuân Phái" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Bùi Xuân Phái</h3>
+                        <p class="artist-years">(1920 - 1988)</p>
+                        <p class="artist-desc">Danh họa nổi tiếng với những bức tranh phố cổ Hà Nội, một trong những họa sĩ lớn nhất của mỹ thuật Việt Nam hiện đại.</p>
+                        <div>
+                            <span class="artist-style">Sơn dầu</span>
+                            <span class="artist-style">Phố cổ</span>
+                        </div>
+                       
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/nghien.jpg" alt="Nguyễn Tư Nghiêm" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Nguyễn Tư Nghiêm</h3>
+                        <p class="artist-years">(1922 - 2016)</p>
+                        <p class="artist-desc">Họa sĩ bậc thầy với phong cách độc đáo kết hợp giữa nghệ thuật dân gian và hiện đại, nổi tiếng với đề tài chèo, tuồng.</p>
+                        <div>
+                            <span class="artist-style">Sơn mài</span>
+                            <span class="artist-style">Trừu tượng</span>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/nguyen-gia-tri.jpg" alt="Nguyễn Gia Trí" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Nguyễn Gia Trí</h3>
+                        <p class="artist-years">(1908 - 1993)</p>
+                        <p class="artist-desc">Bậc thầy tranh sơn mài Việt Nam, người đưa kỹ thuật sơn mài từ nghề thủ công lên thành tác phẩm nghệ thuật đỉnh cao.</p>
+                        <div>
+                            <span class="artist-style">Sơn mài</span>
+                            <span class="artist-style">Trừu tượng</span>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mỹ thuật tôn giáo và dân tộc -->
+        <section id="tongiao" class="art-category">
+            <h2 class="category-title">Mỹ Thuật Tôn Giáo Và Dân Tộc</h2>
+            <p class="category-description">Nghệ thuật tôn giáo và dân tộc Việt Nam thể hiện qua các công trình kiến trúc, điêu khắc và hội họa mang đậm yếu tố tâm linh và bản sắc văn hóa các dân tộc.</p>
+            
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <img src="../images/tran-van-can.jpg" alt="Trần Văn Cẩn" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Trần Văn Cẩn</h3>
+                        <p class="artist-years">(1910 - 1994)</p>
+                        <p class="artist-desc">Họa sĩ nổi tiếng với các tác phẩm về đề tài tôn giáo và đời sống các dân tộc thiểu số Việt Nam.</p>
+                        <div>
+                            <span class="artist-style">Tranh lụa</span>
+                            <span class="artist-style">Dân tộc</span>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/chung.jpg" alt="Nguyễn Tiến Chung" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Nguyễn Tiến Chung</h3>
+                        <p class="artist-years">(1914 - 1976)</p>
+                        <p class="artist-desc">Họa sĩ chuyên về đề tài Phật giáo và các nghi lễ tôn giáo truyền thống Việt Nam.</p>
+                        <div>
+                            <span class="artist-style">Sơn dầu</span>
+                            <span class="artist-style">Phật giáo</span>
+                        </div>
+                       
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/tram.png" alt="Hoàng Trầm" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Hoàng Trầm</h3>
+                        <p class="artist-years">(1922 - 2008)</p>
+                        <p class="artist-desc">Họa sĩ nổi tiếng với các tác phẩm về đời sống văn hóa tâm linh của đồng bào dân tộc Tây Nguyên.</p>
+                        <div>
+                            <span class="artist-style">Màu nước</span>
+                            <span class="artist-style">Dân tộc</span>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Kết hợp truyền thống & hiện đại -->
+        <section id="ket-hop" class="art-category">
+            <h2 class="category-title">Kết Hợp Truyền Thống & Hiện Đại</h2>
+            <p class="category-description">Dòng nghệ thuật kết hợp tinh hoa truyền thống với ngôn ngữ hiện đại, tạo nên những tác phẩm độc đáo mang đậm bản sắc Việt.</p>
+            
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <img src="../images/lephoo.jpg" alt="Lê Phổ" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Lê Phổ</h3>
+                        <p class="artist-years">(1907 - 2001)</p>
+                        <p class="artist-desc">Họa sĩ nổi tiếng với phong cách kết hợp Đông-Tây, là một trong những họa sĩ Việt Nam thành công nhất trên trường quốc tế.</p>
+                        <div>
+                            <span class="artist-style">Lụa</span>
+                            <span class="artist-style">Đông-Tây</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/thu.jpg" alt="Mai Trung Thứ" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Mai Trung Thứ</h3>
+                        <p class="artist-years">(1906 - 1980)</p>
+                        <p class="artist-desc">Họa sĩ tiên phong trong việc kết hợp kỹ thuật phương Tây với đề tài và tinh thần phương Đông.</p>
+                        <div>
+                            <span class="artist-style">Sơn dầu</span>
+                            <span class="artist-style">Lãng mạn</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/dam.jpg" alt="Vũ Cao Đàm" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Vũ Cao Đàm</h3>
+                        <p class="artist-years">(1908 - 2000)</p>
+                        <p class="artist-desc">Họa sĩ và nhà điêu khắc nổi tiếng với phong cách kết hợp tinh hoa nghệ thuật Việt Nam và Pháp.</p>
+                        <div>
+                            <span class="artist-style">Điêu khắc</span>
+                            <span class="artist-style">Hội họa</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sắp đặt và đa phương tiện -->
+        <section id="sap-dat" class="art-category">
+            <h2 class="category-title">Sắp Đặt Và Đa Phương Tiện</h2>
+            <p class="category-description">Nghệ thuật đương đại Việt Nam với các hình thức sắp đặt, video art và đa phương tiện, phản ánh những vấn đề xã hội hiện đại.</p>
+            
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <img src="../images/vu.jpg" alt="Trần Trọng Vũ" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Trần Trọng Vũ</h3>
+                        <p class="artist-years">(1964 - )</p>
+                        <p class="artist-desc">Nghệ sĩ đương đại nổi tiếng với các tác phẩm sắp đặt và video art mang tính phản biện xã hội.</p>
+                        <div>
+                            <span class="artist-style">Sắp đặt</span>
+                            <span class="artist-style">Video art</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/thanh.jpg" alt="Nguyễn Minh Thành" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Nguyễn Minh Thành</h3>
+                        <p class="artist-years">(1976 - )</p>
+                        <p class="artist-desc">Nghệ sĩ đa phương tiện với các tác phẩm kết hợp công nghệ và nghệ thuật truyền thống.</p>
+                        <div>
+                            <span class="artist-style">Đa phương tiện</span>
+                            <span class="artist-style">Tương tác</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/dinh.webp" alt="Lê Quang Đỉnh" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Lê Quang Đỉnh</h3>
+                        <p class="artist-years">(1968 - )</p>
+                        <p class="artist-desc">Nghệ sĩ sắp đặt nổi tiếng với các tác phẩm về ký ức và biến đổi xã hội.</p>
+                        <div>
+                            <span class="artist-style">Sắp đặt</span>
+                            <span class="artist-style">Nghệ thuật ý niệm</span>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Điêu khắc -->
+        <section id="dieukhac" class="art-category">
+            <h2 class="category-title">Điêu Khắc</h2>
+            <p class="category-description">Nghệ thuật điêu khắc Việt Nam từ truyền thống đến hiện đại, với nhiều chất liệu và phong cách đa dạng.</p>
+            
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <img src="../images/chau.jpg" alt="Diệp Minh Châu" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Diệp Minh Châu</h3>
+                        <p class="artist-years">(1919 - 2002)</p>
+                        <p class="artist-desc">Nhà điêu khắc nổi tiếng với các tác phẩm về Bác Hồ và chiến tranh cách mạng.</p>
+                        <div>
+                            <span class="artist-style">Tượng đài</span>
+                            <span class="artist-style">Chân dung</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/nhau.webp" alt="Nguyễn Hải" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Nguyễn Hải</h3>
+                        <p class="artist-years">(1927 - 2013)</p>
+                        <p class="artist-desc">Nhà điêu khắc hàng đầu Việt Nam với nhiều tác phẩm tượng đài lớn.</p>
+                        <div>
+                            <span class="artist-style">Đồng</span>
+                            <span class="artist-style">Tượng đài</span>
+                        </div>
+                       
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="../images/hai.jpg" alt="Đào Châu Hải" class="artist-image">
+                    <div class="artist-info">
+                        <h3 class="artist-name">Đào Châu Hải</h3>
+                        <p class="artist-years">(1955 - )</p>
+                        <p class="artist-desc">Nghệ sĩ điêu khắc đương đại với phong cách độc đáo kết hợp truyền thống và hiện đại.</p>
+                        <div>
+                            <span class="artist-style">Điêu khắc</span>
+                            <span class="artist-style">Đương đại</span>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Về chúng tôi</h3>
+                <p>Tên nhóm: Ymir Lord</p>
+                <p>Thành viên: <br>
+                    1.Đỗ Thị Tình <br>
+                    2.Lê Thị Ngọc Vy <br>
+                    3.Hà Thúc Tấn <br>
+                    4.Trương Đức Long <br>
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="6.html">Trang chủ</a></li>
+                    <li><a href="18.html">Nghệ sĩ</a></li>
+                    <li><a href="9.html">Bảo tàng</a></li>
+                    <li><a href="16.html">Sự kiện và giáo dục</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Thông tin liên hệ</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Đường Mỹ Thuật, Đà Nẵng</li>
+                    <li><i class="fas fa-phone"></i> (0236) 123 4567</li>
+                    <li><i class="fas fa-envelope"></i> info@mythuatvietnam.com</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 Mỹ Thuật Việt Nam. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

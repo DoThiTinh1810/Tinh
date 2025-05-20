@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mỹ Thuật Việt Nam - Di sản Nghệ thuật Dân tộc</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4A3B31;
+            --secondary-color: #E3CAA5;
+            --accent-color: #B87333;
+            --light-bg: #F8F8FF;
+            --dark-text: #36454F;
+            --border-color: #A9A9A9;
+        }
+
+        /* General Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Noto Serif', serif;
+            color: var(--dark-text);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header */
+        .top-header {
+            background-color: var(--secondary-color);
+            padding: 25px 0 15px;
+            text-align: center;
+            border-bottom: 1px solid var(--dark-text);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            letter-spacing: 3px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+        }
+        /*
+        .logo::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        */
+        /* Navigation */
+        #main-navigation {
+            background-color: var(--light-bg);
+            border-top: 1px solid var(--dark-text);
+            border-bottom: 1px solid var(--dark-text);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .main-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #main-navigation li {
+            position: relative;
+        }
+
+        #main-navigation a {
+            display: block;
+            padding: 8px 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        #main-navigation a:hover {
+            color: var(--accent-color);
+        }
+
+        #main-navigation a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        #main-navigation a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            min-width: 220px;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 5px 5px;
+            overflow: hidden;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            padding: 12px 15px;
+            font-weight: 500;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f8f4e8;
+            padding-left: 20px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .search-bar form {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+            width: 200px;
+            transition: all 0.3s ease;
+            font-family: 'Noto Serif', serif;
+        }
+
+        .search-bar input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(170,123,40,0.2);
+        }
+
+        .search-bar button {
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            border-left: none;
+            background-color: #f0e6d2;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Sections */
+        section {
+            padding: 50px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 0 auto 30px;
+            padding-bottom: 15px;
+            color: var(--primary-color);
+            position: relative;
+            width: fit-content;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .section-title.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color));
+            border-radius: 3px;
+        }
+/*
+        .decor-line {
+            width: 120px;
+            height: 1px;
+            background: var(--border-color);
+            margin: 0 auto 40px;
+        }
+*/
+        /* Art Slider Section */
+        #art-slider-section {
+            background-color: #faf8f3;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .art-slider {
+            position: relative;
+            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .swiper {
+            width: 100%;
+            overflow: visible;
+        }
+
+        .swiper-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .swiper-slide {
+            flex-shrink: 0;
+            width: 100%;
+            display: flex; /* Kích hoạt Flexbox */
+            flex-direction: row; /* Sắp xếp các phần tử theo hàng ngang */
+            align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+            justify-content: center; /* Căn giữa các phần tử theo chiều ngang (nếu có không gian thừa) */
+            gap: 40px;
+            padding: 20px;
+            box-sizing: border-box;
+            min-height: 450px; /* Hoặc chiều cao tối thiểu bạn muốn */
+            opacity: 0 !important;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .swiper-slide-active {
+            opacity: 1 !important;
+        }
+
+        .slide-image {
+            flex: 1;
+            max-width: 500px; /* Hoặc một giá trị phù hợp khác */
+            /* Thêm dòng này để giới hạn chiều cao tối đa */
+            max-height: 600px; /* Điều chỉnh giá trị này theo ý muốn */
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateX(-50px) rotateY(15deg);
+            opacity: 0;
+            filter: brightness(0.9);
+        }
+
+        .slide-image img {
+            width: 100%; /* Đảm bảo ảnh lấp đầy chiều rộng khung */
+            height: auto; /* Chiều cao tự động điều chỉnh theo tỷ lệ */
+            display: block;
+            object-fit: cover; /* Cắt ảnh để vừa với khung nếu cần */
+            /* Thêm dòng này nếu bạn muốn giới hạn chiều cao ảnh */
+            max-height: 100%; /* Để không vượt quá chiều cao khung chứa */
+        }
+
+        .swiper-slide-active .slide-image {
+            transform: translateX(0) rotateY(0);
+            opacity: 1;
+            filter: brightness(1);
+            transition-delay: 0.3s;
+        }
+
+        .slide-text {
+            flex: 1;
+            max-width: 500px; /* Hoặc một giá trị phù hợp khác */
+            font-size: 1.1rem;
+            line-height: 1.7;
+            /* Giảm giá trị padding */
+            padding: 100px; /* Thay vì 30px */
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            background-color: #fff;
+            position: relative;
+            overflow: hidden;
+            transform: translateX(50px) rotateY(-15deg);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            text-align: justify;
+        }
+        .slide-text h3 {
+            /* Các thuộc tính hiện có */
+            text-align: center; /* Thường tiêu đề sẽ căn giữa */
+        }
+
+        .swiper-slide-active .slide-text {
+            transform: translateX(0) rotateY(0);
+            opacity: 1;
+            transition-delay: 0.6s;
+        }
+
+        .swiper-slide .slide-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(193,154,107,0.3) 0%, rgba(255,255,255,0) 50%);
+            z-index: 2;
+            transition: all 1s ease;
+            transform: translateX(-100%);
+        }
+
+        .swiper-slide-active .slide-image::before {
+            transform: translateX(100%);
+            transition-delay: 0.4s;
+        }
+
+        /* Swiper Navigation Buttons */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--primary-color);
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            top: 50%;
+            transform: translateY(-50%) scale(0.9);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(2px);
+            opacity: 0.7;
+        }
+
+        .swiper-button-prev {
+            left: 20px;
+        }
+
+        .swiper-button-next {
+            right: 20px;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            color: #fff;
+            background-color: var(--accent-color);
+            transform: translateY(-50%) scale(1);
+            opacity: 1;
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        /* Swiper Pagination */
+        .swiper-pagination {
+            position: absolute;
+            bottom: 20px !important;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255,255,255,0.5);
+            opacity: 1;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        /* Highlighted Sections */
+        .highlighted-section {
+            padding: 60px 0;
+            background-color: #fff;
+        }
+
+        .highlighted-section:nth-child(even) {
+            background-color: #faf8f3;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-text);
+            color: #fff;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom:10px;
+        }
+
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #fff;
+            background-color: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .swiper-slide {
+                flex-direction: column;
+                gap: 30px;
+                padding: 30px;
+                min-height: auto;
+            }
+
+            .slide-image, .slide-text {
+                max-width: 100%;
+            }
+
+            .logo {
+                font-size: 2.2rem;
+            }
+
+            #main-navigation a {
+                font-size: 0.95rem;
+                padding: 8px 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 15px;
+            }
+
+            .search-bar input[type="text"] {
+                width: 150px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .swiper-slide {
+                padding: 20px;
+            }
+
+            .slide-text {
+                padding: 20px;
+            }
+
+            .slide-text h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main-nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .search-bar {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .search-bar form {
+                width: 100%;
+            }
+
+            .search-bar input[type="text"] {
+                width: 100%;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                width: 35px;
+                height: 35px;
+            }
+        }
+            .highlighted-section {
+                padding: 60px 0;
+                background-color: #f9f9f9;
+            }
+
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .section-title {
+                text-align: center;
+                font-size: 2.5rem;
+                color: #333;
+                margin-bottom: 15px;
+            }
+/*
+            .decor-line {
+                width: 80px;
+                height: 3px;
+                background-color: #ff6b6b;
+                margin: 0 auto 40px;
+            }
+*/
+            .artists-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 30px;
+            }
+
+            .artist-card {
+                text-align: center;
+                transition: all 0.3s ease;
+            }
+
+            .artist-image {
+                position: relative;
+                overflow: hidden;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            .artist-image img {
+                width: 100%;
+                height: auto;
+                display: block;
+                transition: transform 0.5s ease;
+            }
+
+            .artist-info {
+                position: absolute;
+                bottom: -100%;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(16, 15, 15, 0.8);
+                color: white;
+                padding: 20px;
+                box-sizing: border-box;
+                transition: bottom 0.5s ease;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .artist-card:hover .artist-info {
+                bottom: 0;
+            }
+
+            .artist-card:hover .artist-image img {
+                transform: scale(1.1);
+            }
+
+            .artist-info h3 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+                color: #ff6b6b;
+            }
+
+            .artist-info p {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+                line-height: 1.5;
+            }
+
+            .social-links {
+                display: flex;
+                gap: 15px;
+            }
+
+            .social-links a {
+                color: white;
+                font-size: 1.2rem;
+                transition: color 0.3s ease;
+            }
+
+            .social-links a:hover {
+                color: #ff6b6b;
+            }
+
+            .artist-name {
+                margin-top: 15px;
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: #333;
+            }
+
+        
+        /* Container */
+        .news-events {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        /* Tiêu đề section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: #e74c3c;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Grid layout */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        /* Card tin tức/sự kiện */
+        .news-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-date {
+            font-size: 0.9rem;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        
+        .news-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .news-excerpt {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .read-more:hover {
+            color: #c0392b;
+        }
+        
+    
+
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }        
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+        <a href="#" class="logo">MỸ THUẬT VIỆT NAM</a>
+    </header>
+
+    <nav id="main-navigation">
+        <div class="main-nav-container">
+            <ul class="nav-menu">
+                <li><a href="6.html">Trang chủ</a></li>
+                <li><a href="18.html">Nghệ sĩ</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Giới thiệu <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="9.html">Bảo tàng</a></li>
+                        <li><a href="12.html">Lịch sử mỹ thuật Việt Nam</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Thể loại <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="65.html">Mỹ thuật dân gian</a></li>
+                        <li><a href="67.html">Mỹ thuật cổ điển</a></li>
+                        <li><a href="66.html">Mỹ thuật hiện đại</a></li>
+                        <li><a href="kh.html">Mỹ thuật tôn giáo và dân tộc</a></li>
+                        <li><a href="kh2.html">Kết hợp truyền thống & hiện đại</a></li>
+                        <li><a href="kh3.html">Sắp đặt và đa phương tiện</a></li>
+                        <li><a href="dk.html">Điêu khắc</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="16.html">Sự kiện và giáo dục</a></li>
+            </ul>
+
+            <div class="search-bar">
+                <form action="#" method="get">
+                    <input type="text" name="search" placeholder="Tìm kiếm..." />
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <section id="art-slider-section">
+        <div class="container">
+            <h2 class="section-title">Tác phẩm nổi bật</h2>
+            <div class="decor-line"></div>
+
+            <div class="swiper art-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide slide-content">
+                        <div class="slide-image">
+                            <img src="../images/tnbhh.jpg" alt="Thiếu nữ bên hoa huệ">
+                        </div>
+                        <div class="slide-text">
+                            <h3>“Thiếu nữ bên hoa huệ” (1943) – Tô Ngọc Vân</h3>
+                            <p>Bức tranh sơn dầu nổi tiếng, thể hiện vẻ đẹp dịu dàng, thanh thoát của người phụ nữ Việt Nam. Tác phẩm là đỉnh cao trong sự nghiệp sáng tác của họa sĩ Tô Ngọc Vân, với bố cục hài hòa và màu sắc tinh tế.</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide slide-content">
+                        <div class="slide-image">
+                            <img src="../images/knd.jpg" alt="Kết nạp Đảng ở Điện Biên Phủ">
+                        </div>
+                        <div class="slide-text">
+                            <h3>“Kết nạp Đảng ở Điện Biên Phủ” (1964) – Nguyễn Sáng</h3>
+                            <p>Một tác phẩm sơn mài hoành tráng, khắc họa khoảnh khắc lịch sử trong chiến dịch Điện Biên Phủ. Bức tranh thể hiện tinh thần quả cảm của người lính và sự lãnh đạo của Đảng.</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide slide-content">
+                        <div class="slide-image">
+                            <img src="../images/giong.jpg" alt="Gióng">
+                        </div>
+                        <div class="slide-text">
+                            <h3>“Gióng” (1990) – Nguyễn Tư Nghiêm</h3>
+                            <p>Một tác phẩm nổi tiếng ở Việt Nam, lấy cảm hứng từ truyền thuyết Thánh Gióng. Tác phẩm sơn mài này sử dụng các mảng màu tương phản và đường nét mạnh mẽ để tái hiện hình ảnh người anh hùng cưỡi ngựa, biểu tượng cho tinh thần bất khuất và sức mạnh dân tộc.</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide slide-content">
+                        <div class="slide-image">
+                            <img src="../images/ET.jpeg" alt="Em Thúy">
+                        </div>
+                        <div class="slide-text">
+                            <h3>“Em Thúy” (1980) – Trần Văn Cẩn</h3>
+                            <p>Một tác phẩm tranh sơn mài đầy cảm xúc, khắc họa hình ảnh Bác Hồ giản dị giữa núi rừng Việt Bắc trong thời kỳ kháng chiến. Bức tranh sử dụng ánh sáng và màu sắc tinh tế, thể hiện tình yêu quê hương và sự lãnh đạo sáng suốt của Người.</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide slide-content">
+                        <div class="slide-image">
+                            <img src="../images/bh.jpg" alt="Bác Hồ ở chiến khu Việt Bắc">
+                        </div>
+                        <div class="slide-text">
+                            <h3>“Bác Hồ ở chiến khu Việt Bắc” (1943) – Dương Bích Liên</h3>
+                            <p>Một tác phẩm tranh sơn dầu nổi tiếng thuộc giai đoạn Mỹ thuật Đông Dương. Bức chân dung trẻ em với ánh mắt trong trẻo và nụ cười hồn nhiên đã trở thành biểu tượng của tuổi thơ Việt Nam.</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide slide-content">
+                        <div class="slide-image">
+                            <img src="../images/tntd.jpg" alt="Thanh niên Thành Đồng">
+                        </div>
+                        <div class="slide-text">
+                            <h3>“Thanh niên Thành Đồng” (1960) -  Nguyễn Sáng </h3>
+                            <p>Một tác phẩm độc bản mô tả cuộc đấu tranh của học sinh, sinh viên Sài Gòn biểu tình chống chiến tranh trong những năm 1960, phản đối sự có mặt của lính Mỹ tại Việt Nam và hát vang những bài ca yêu nước, kêu gọi đình chiến, mong muốn được hòa bình.</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide slide-content">
+                        <div class="slide-image">
+                            <img src="../images/radao.jpg" alt="Ra đảo">
+                        </div>
+                        <div class="slide-text">
+                            <h3>“Ra đảo” (1970) – Nguyễn Văn Tỵ </h3>
+                            <p>Một tác phẩm tranh khắc họa hình ảnh những người lính ra khơi với ý chí mạnh mẽ. Bức tranh sơn mài này sử dụng các gam màu xanh và nâu để tái hiện vẻ đẹp hùng vĩ của biển cả, hòa quyện với tinh thần bất khuất của dân tộc.</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide slide-content">
+                        <div class="slide-image">
+                            <img src="../images/madam.jpg" alt="Madam Phương">
+                        </div>
+                        <div class="slide-text">
+                            <h3>“Madam Phương” (1930) – Mai Trung Thứ </h3>
+                            <p>Một tác phẩm tranh sơn dầu khắc họa vẻ đẹp quý phái của người phụ nữ Việt. Với bố cục hài hòa, màu sắc thanh lịch và nét vẽ mềm mại, bức tranh thể hiện sự giao thoa tinh tế giữa truyền thống và hiện đại.</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide slide-content">
+                        <div class="slide-image">
+                            <img src="../images/laha.jpg" alt="Tượng La Hán">
+                        </div>
+                        <div class="slide-text">
+                            <h3>“Tượng La Hán” (chùa Tây Phương – thời Lê, TK 17)</h3>
+                            <p>Thế kỷ 17 đánh dấu một thời kỳ bùng nổ trong nghệ thuật tôn giáo tại Việt Nam, và tượng La Hán ở chùa Tây Phương là minh chứng điển hình cho sự phát triển này. Những bức tượng không chỉ mang ý nghĩa tôn giáo mà còn thể hiện những giá trị nghệ thuật sâu sắc, phản ánh cuộc sống và tín ngưỡng của người dân thời bấy giờ.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="highlighted-section" id="featured-artists">
+        <div class="container">
+            <h2 class="section-title">Nghệ sĩ tiêu biểu</h2>
+            <div class="decor-line"></div>
+
+            <div class="artists-grid">
+                <!-- Nghệ sĩ 1 -->
+                <div class="artist-card">
+                    <div class="artist-image">
+                        <img src="../images/nguyen-gia-tri.jpg" alt="Nguyễn Gia Trí">
+                        <div class="artist-info">
+                            <p>“Nghệ thuật là sự dâng hiến, không phải là sự mua bán.”</p>
+                        </div>
+                    </div>
+                    <div class="artist-name">Nguyễn Gia Trí (1908–1993)</div>
+                </div>
+
+                <!-- Nghệ sĩ 2 -->
+                    <div class="artist-card">
+                        <div class="artist-image">
+                            <img src="../images/sang.jpg" alt="Nguyễn Sáng">
+                            <div class="artist-info">
+                                <p>“Hội họa là nơi tôi bày tỏ tâm hồn mình, không phải để làm vừa lòng ai cả.”</p>
+                            </div>
+                        </div>
+                        <div class="artist-name"> Nguyễn Sáng (1923–1988) </div>
+                    </div>  
+
+                     <!-- Nghệ sĩ 3 -->
+                    <div class="artist-card">
+                        <div class="artist-image">
+                            <img src="../images/bui.jpg" alt="Bùi Xuân Phái">
+                            <div class="artist-info">
+                                <p>“Tôi yêu Hà Nội đến mức phải vẽ nó cả đời.”</p>
+                            </div>
+                        </div>
+                        <div class="artist-name">Bùi Xuân Phái (1920–1988)</div>
+                    </div>
+
+                <!-- Nghệ sĩ 4 -->
+                    <div class="artist-card">
+                        <div class="artist-image">
+                            <img src="../images/tu.jpg" alt=" Nguyễn Tư Nghiêm">
+                            <div class="artist-info">
+                                <p>“Mỹ thuật là sự tiếp nối truyền thống bằng ngôn ngữ của thời đại.”</p>
+                            </div>
+                        </div>
+                        <div class="artist-name"> Nguyễn Tư Nghiêm (1918–2016)</div>
+                    </div>           
+
+                <!-- Nghệ sĩ 5 -->
+                    <div class="artist-card">
+                        <div class="artist-image">
+                            <img src="../images/To-Ngoc-Van.jpg" alt="Tô Ngọc Vân">
+                            <div class="artist-info">
+                                <p>“Hội họa không phải để mô phỏng thiên nhiên, mà là để bày tỏ cảm xúc trước thiên nhiên.”</p>
+                            </div>
+                        </div>
+                        <div class="artist-name">Tô Ngọc Vân (1906–1954)</div>
+                    </div>  
+                
+                <!-- Nghệ sĩ 6 -->
+                    <div class="artist-card">
+                        <div class="artist-image">
+                            <img src="../images/tran.jpg" alt="Trần Văn Cẩn">
+                            <div class="artist-info">
+                                <p>“Hội họa không nên chỉ là cái đẹp bề ngoài, mà là sự rung cảm từ tâm hồn.”</p>
+                            </div>
+                        </div>
+                        <div class="artist-name">Trần Văn Cẩn (1910–1994)</div>
+                    </div>        
+                    
+                <!-- Nghệ sĩ 7 -->
+                    <div class="artist-card">
+                        <div class="artist-image">
+                            <img src="../images/duong.jpg" alt=" Dương Bích Liên">
+                            <div class="artist-info">
+                                <p>“Hội họa là nỗi buồn đẹp.”</p>
+                            </div>
+                        </div>
+                        <div class="artist-name"> Dương Bích Liên (1924–1988) </div>
+                    </div>
+
+                <!-- Nghệ sĩ 8 -->
+                    <div class="artist-card">
+                        <div class="artist-image">
+                            <img src="../images/lepho.png" alt="Lê Phổ">
+                            <div class="artist-info">
+                                <p>“Tôi vẽ để giữ lại vẻ đẹp của người phụ nữ Việt trong tâm tưởng.”</p>
+                            </div>
+                        </div>
+                        <div class="artist-name"> Lê Phổ (1907–2001) </div>
+                    </div> 
+                      
+                    
+                </div>
+            </div>
+            <a href="18.html" class="view-all">Xem tất cả</a>
+        </section>
+
+     <section class="news-events">
+        <div class="section-title">
+            <h2>Tin Tức & Sự Kiện</h2>
+        </div>
+        
+        <div class="news-grid">
+            <!-- Tin tức 1 -->
+            <div class="news-card">
+                <img src="../images/1.jpg" alt="Tin tức 1" class="news-image">
+                <div class="news-content">
+                    <h3 class="news-title">Triển lãm “Xuân 2025” – Mở đầu hành trình 100 năm Trường Đại học Mỹ thuật Việt Nam</h3>
+                    <p class="news-excerpt">Khai mạc ngày 7/3/2025 tại Bảo tàng Trường Đại học Mỹ thuật Việt Nam, triển lãm “Xuân 2025” trưng bày 44 tác phẩm của...</p>
+                    <a href="https://mythuatvietnam.edu.vn/tin-tuc-su-kien/trien-lam-xuan-2025-mo-dau-cho-hanh-trinh-100-nam-truong-dai-hoc-my-thuat-viet-nam.html?utm_source=chatgpt.com" class="read-more">Xem chi tiết →</a>
+                </div>
+            </div>
+            
+            <!-- Sự kiện 1 -->
+            <div class="news-card">
+                <img src="../images/2.jpg" alt="Tin tức 2" class="news-image">
+                <div class="news-content">
+                    <h3 class="news-title">Triển lãm Mỹ thuật Sinh viên 2025 – Hành trình 100 năm nghệ thuật và sáng tạo</h3>
+                    <p class="news-excerpt">Diễn ra từ ngày 25/3 đến 3/4/2025 tại không gian ART SPACE, 42 Yết Kiêu, Hà Nội, triển lãm giới thiệu 159 tác phẩm được chọn lọc từ 239 sáng tác của sinh viên Trường Đại học...</p>
+                    <a href="https://mythuatvietnam.edu.vn/su-kien/khai-mac-va-trao-giai-trien-lam-my-thuat-sinh-vien-truong-dai-hoc-my-thuat-viet-nam-nam-2025.html?utm_source=chatgpt.com" class="read-more">Xem chi tiết →</a>
+                </div>
+            </div>
+            
+            <!-- Tin tức 2 -->
+            <div class="news-card">
+                <img src="../images/3.jpg" alt="Tin tức 3" class="news-image">
+                <div class="news-content">
+                    <h3 class="news-title">Triển lãm “Hồ Chí Minh trong nghệ thuật tạo hình”</h3>
+                    <p class="news-excerpt">Khai mạc vào ngày 16/5/2025 tại Bảo tàng Mỹ thuật Việt Nam, triển lãm giới thiệu 60 tác phẩm của các họa sĩ, nhà điêu khắc và nghệ nhân Việt Nam và...</p>
+                    <a href="https://dulichvn.org.vn/index.php/item/bao-tang-my-thuat-viet-nam-to-chuc-trien-lam-ho-chi-minh-trong-nghe-thuat-tao-hinh-64012?utm_source=chatgpt.com" class="read-more">Xem chi tiết →</a>
+                </div>
+            </div>
+        </div>
+        
+        <a href="16.html" class="view-all">Xem tất cả</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Về chúng tôi</h3>
+                <p>Tên nhóm: Ymir Lord</p>
+                <p>Thành viên: <br>
+                    1.Đỗ Thị Tình <br>
+                    2.Lê Thị Ngọc Vy <br>
+                    3.Hà Thúc Tấn <br>
+                    4.Trương Đức Long <br>
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="6.html">Trang chủ</a></li>
+                    <li><a href="18.html">Nghệ sĩ</a></li>
+                    <li><a href="9.html">Bảo tàng</a></li>
+                    <li><a href="16.html">Sự kiện và giáo dục</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Thông tin liên hệ</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Trường Đại Học CNTT và TT Việt-Hàn</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 Mỹ Thuật Việt Nam. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('.swiper', {
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                loop: true,
+                autoplay: {
+                    delay: 8000,
+                    disableOnInteraction: false,
+                },
+                speed: 1200,
+                grabCursor: true,
+                effect: 'creative',
+                creativeEffect: {
+                    prev: {
+                        shadow: true,
+                        translate: ['-100%', 0, -1],
+                        opacity: 0,
+                    },
+                    next: {
+                        translate: ['100%', 0, 0],
+                        opacity: 0,
+                    },
+                },
+            });
+
+            // Simple appear animation on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+
+            const sectionTitles = document.querySelectorAll('.section-title');
+            sectionTitles.forEach((title) => {
+                observer.observe(title);
+            });
+        });
+    </script>
+</body>
+</html>
+            
